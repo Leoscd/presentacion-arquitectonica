@@ -1,19 +1,27 @@
-# Landing de Proyecto Arquitectonico
+# Landing de Proyecto Arquitectónico
 ### Kit generado con SoyLeo AI — soyleoai.com
 
 ---
 
-## Que contiene este repositorio
+## Qué contiene este repositorio
 
 ```
 /
-├── index.html       — Landing page lista para publicar
-├── proyecto.json    — Datos del proyecto (editar aqui)
-├── CLAUDE.md        — Instrucciones para Claude Code
-├── README.md        — Este archivo
+├── index.html           — Landing page interactiva lista para publicar
+├── proyecto.json        — Datos del proyecto (editar aquí)
+├── CLAUDE.md            — Instrucciones para Claude Code
+├── README.md            — Este archivo
+├── crear_landing.sh     — Script de automatización (1 comando = landing publicada)
+├── .gitignore
+├── agentes/             — Pipeline Multi-Agente (IA especializada)
+│   ├── 1-analista.md    — Agente Analista de Información
+│   ├── 2-articulador.md — Agente Articulador de Datos
+│   ├── 3-disenador.md   — Agente Diseñador Premium (Frontend)
+│   └── 4-tester.md      — Agente QA Tester (Validador)
 └── assets/
     ├── video.mp4
     ├── planta3d.png
+    ├── frente.png
     ├── cocina-comedor.png
     ├── habitacion.png
     └── baño.png
@@ -21,78 +29,83 @@
 
 ---
 
-## Publicar en GitHub Pages (5 pasos)
+## Automatización: 1 Comando = Landing Publicada
 
-**Paso 1 — Crear repositorio en GitHub**
-- Ir a github.com/new
-- Nombre: `landing-[nombre-proyecto]`
-- Visibilidad: **Public**
-- NO marcar "Initialize with README"
-- Crear repositorio
+### Requisitos previos del alumno
 
-**Paso 2 — Subir los archivos**
+| Herramienta | Para qué se usa | Instalación |
+|---|---|---|
+| **Git** | Versionar y subir archivos | [git-scm.com](https://git-scm.com) |
+| **GitHub CLI (`gh`)** | Crear repos y activar Pages desde terminal | [cli.github.com](https://cli.github.com) + `gh auth login` |
+| **Claude Code** | IA que lee los renders/presupuestos y escribe el código | `npm install -g @anthropic-ai/claude-code` |
+| **Cuenta GitHub** | Hostear la landing gratis en GitHub Pages | [github.com/signup](https://github.com/signup) |
 
-Desde la carpeta del proyecto, abrir terminal y ejecutar:
+> **No se necesitan MCPs ni configuraciones adicionales.**
+
+### Ejecutar la automatización
+
+Abrir Git Bash (o terminal compatible) y pegar:
 
 ```bash
-git init
-git add .
-git commit -m "Landing inicial del proyecto"
-git branch -M main
-git remote add origin https://github.com/TU-USUARIO/landing-TU-PROYECTO.git
-git push -u origin main
+curl -s https://raw.githubusercontent.com/Leoscd/presentacion-arquitectonica/main/crear_landing.sh | bash
 ```
 
-Reemplaza `TU-USUARIO` y `TU-PROYECTO` con tus datos reales.
+El script pedirá:
+1. **Nombre del proyecto** (ej: `torre-libertad`)
+2. **Ruta a la carpeta** con los renders, video y presupuesto del alumno
 
-**Paso 3 — Activar GitHub Pages**
-- Ir al repositorio en GitHub
-- Click en **Settings** (engranaje)
-- En el menu lateral: **Pages**
-- Source: **Deploy from a branch**
-- Branch: **main** / **(root)**
-- Click **Save**
+Luego, automáticamente:
+- Descarga este repositorio como plantilla
+- Copia los assets del alumno
+- Ejecuta el **Pipeline Multi-Agente** de IA (ver abajo)
+- Crea un repositorio público en el GitHub del alumno
+- Activa GitHub Pages
+- Entrega la URL final lista para compartir con el cliente
 
-**Paso 4 — Esperar 1-2 minutos**
+---
 
-GitHub Pages tarda unos minutos en procesar el primer deploy.
+## Pipeline Multi-Agente de IA
 
-**Paso 5 — Tu URL publica**
+El script ejecuta **4 agentes especializados** en secuencia. Cada uno tiene un rol definido y un procedimiento operativo estándar (SOP):
 
-```
-https://TU-USUARIO.github.io/landing-TU-PROYECTO/
-```
+### 🕵️ Agente 1: Analista de Información (`agentes/1-analista.md`)
+- **Misión:** Escanear la carpeta `assets/` e inventariar qué información existe (imágenes, videos, presupuestos) y qué falta.
+- **Output:** Genera `estado-proyecto.json` con el mapa de recursos disponibles.
 
-Esa URL la compartis con el cliente, la mandas por WhatsApp, o la incluís en tu propuesta comercial.
+### 🏗️ Agente 2: Articulador de Datos (`agentes/2-articulador.md`)
+- **Misión:** Cruzar los datos del presupuesto con los espacios y renders del proyecto.
+- **Output:** Actualiza `proyecto.json` con rubros, totales, superficies y asignación de imágenes a locales.
+
+### ✨ Agente 3: Diseñador Premium (`agentes/3-disenador.md`)
+- **Misión:** Inyectar los datos del JSON en `index.html` con diseño premium Dark Gold.
+- **Funcionalidades que genera:**
+  - Planimetría interactiva con marcadores clickeables
+  - Galería de renders con scroll horizontal
+  - Presupuesto con pestañas (Rubros / Resumen)
+  - Sección de feedback del cliente
+
+### 🛡️ Agente 4: QA Tester (`agentes/4-tester.md`)
+- **Misión:** Verificar consistencia entre datos y visuales.
+- **Validaciones:** Links de imágenes, sumas de presupuesto, coherencia arquitectónica, eliminación de placeholders.
 
 ---
 
 ## Personalizar para otro proyecto
 
 1. Editar `proyecto.json` con los datos del nuevo proyecto
-2. Reemplazar las imagenes en `assets/` con las del nuevo proyecto
+2. Reemplazar las imágenes en `assets/` con las del nuevo proyecto
 3. Abrir Claude Code en esta carpeta y ejecutar:
 
 ```
-Lee proyecto.json y CLAUDE.md, luego regenera index.html con los nuevos datos.
+Lee proyecto.json y regenera index.html con los nuevos datos.
 ```
 
-4. Hacer commit y push. GitHub Pages se actualiza automaticamente.
+4. Hacer commit y push. GitHub Pages se actualiza automáticamente.
 
 ---
 
-## Actualizar datos rapidamente
+## Créditos
 
-Para cambiar cualquier dato sin abrir Claude Code, editas `proyecto.json` directamente y luego en Claude Code:
-
-```
-Regenera index.html leyendo el proyecto.json actualizado.
-```
-
----
-
-## Creditos
-
-Generado con **SoyLeo AI**
-Arq. Leonardo Diaz | Tucuman, Argentina
+Generado con **SoyLeo AI** — Sistema de documentación arquitectónica con IA
+Arq. Leonardo Díaz | Tucumán, Argentina
 [soyleoai.com](https://soyleoai.com) | [@soy.leo_ai](https://instagram.com/soy.leo_ai)

@@ -203,31 +203,42 @@ section { padding: 100px 5vw; }
 .interactive-plan-container {
   position: relative;
   width: 100%;
-  max-width: 1000px;
+  max-width: 1100px;
   margin: 0 auto;
   border: 1px solid var(--gold-mid);
   padding: 10px;
   background: var(--dark-3);
+  overflow: hidden;
 }
 
 .interactive-plan {
   position: relative;
   width: 100%;
+  /* Aspect ratio ajustado para la imagen rotada (vertical->apaisada) */
+  aspect-ratio: 16 / 9;
   display: block;
 }
 
 .interactive-plan img {
-  width: 100%;
-  height: auto;
-  display: block;
-  object-fit: contain; /* Para que la planta apaisada se vea por completo */
+  position: absolute;
+  /* Rotamos la imagen de la planta 90° para que quede apaisada */
+  transform: rotate(90deg);
+  transform-origin: center center;
+  /* La imagen original es mas alta que ancha, al rotar debemos ajustar tamaño */
+  height: 100%;
+  width: auto;
+  max-height: 100%;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  object-fit: contain;
 }
 
 /* Animación de los marcadores */
-@keyframes pulse-ring {
-  0% { transform: scale(0.8); box-shadow: 0 0 0 0 rgba(201,168,76, 0.7); }
-  70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(201,168,76, 0); }
-  100% { transform: scale(0.8); box-shadow: 0 0 0 0 rgba(201,168,76, 0); }
+@keyframes marker-zoom {
+  0% { transform: translate(-50%, -50%) scale(1); }
+  50% { transform: translate(-50%, -50%) scale(1.5); }
+  100% { transform: translate(-50%, -50%) scale(1); }
 }
 
 .hotspot {
@@ -245,14 +256,14 @@ section { padding: 100px 5vw; }
   color: var(--dark);
   font-weight: bold;
   font-size: 14px;
-  animation: pulse-ring 2s infinite;
-  transition: background 0.3s;
+  animation: marker-zoom 2.5s ease-in-out infinite;
+  transition: all 0.3s;
 }
 
 .hotspot:hover, .hotspot.active {
   background: var(--light);
+  transform: translate(-50%, -50%) scale(1.15);
   animation: none;
-  transform: translate(-50%, -50%) scale(1.1);
 }
 
 /* Panel Desplegable del Sector */
@@ -473,12 +484,15 @@ textarea.form-control { resize: vertical; min-height: 120px; }
   
   <div class="interactive-plan-container">
     <div class="interactive-plan">
-      <img src="assets/planta3d.png" alt="Planta del Proyecto Apaisada">
+      <img src="assets/planta3d.png" alt="Planta del Proyecto">
       
-      <!-- Hotspots posicionados (valores de ejemplo, el agente articulador debería generar esto dinámico) -->
-      <div class="hotspot" style="top: 35%; left: 30%;" data-target="sector-cocina">+</div>
-      <div class="hotspot" style="top: 60%; left: 65%;" data-target="sector-habitacion">+</div>
-      <div class="hotspot" style="top: 20%; left: 75%;" data-target="sector-bano">+</div>
+      <!-- Hotspots posicionados (coordenadas post-rotación 90°) -->
+      <!-- Cocina-Living-Comedor: zona inferior en la planta original = lado derecho rotada -->
+      <div class="hotspot" style="top: 55%; left: 70%;" data-target="sector-cocina">+</div>
+      <!-- Dormitorio: zona superior-izquierda original = lado izquierdo rotada -->
+      <div class="hotspot" style="top: 45%; left: 25%;" data-target="sector-habitacion">+</div>
+      <!-- Baño: zona centro-derecha original = arriba-centro rotada -->
+      <div class="hotspot" style="top: 30%; left: 48%;" data-target="sector-bano">+</div>
     </div>
   </div>
 
@@ -536,6 +550,10 @@ textarea.form-control { resize: vertical; min-height: 120px; }
   <span class="s-tag">02 — Visualización General</span>
   <h2 class="s-title">Recorrido<br>Visual</h2>
   <div class="galeria-track" id="galeriaTrack">
+    <div class="galeria-card">
+      <img src="assets/frente.png" alt="Fachada Frontal">
+      <div class="galeria-card-label">Fachada Principal</div>
+    </div>
     <div class="galeria-card">
       <img src="assets/planta3d.png" alt="Planta General" style="object-fit: contain;">
       <div class="galeria-card-label">Planta Total (Vista Apaisada)</div>
