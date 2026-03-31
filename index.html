@@ -214,23 +214,15 @@ section { padding: 100px 5vw; }
 .interactive-plan {
   position: relative;
   width: 100%;
-  /* Aspect ratio ajustado para la imagen rotada (vertical->apaisada) */
-  aspect-ratio: 16 / 9;
   display: block;
 }
 
 .interactive-plan img {
-  position: absolute;
-  /* Rotamos la imagen de la planta 90° para que quede apaisada */
-  transform: rotate(90deg);
-  transform-origin: center center;
-  /* La imagen original es mas alta que ancha, al rotar debemos ajustar tamaño */
-  height: 100%;
-  width: auto;
-  max-height: 100%;
-  left: 50%;
-  top: 50%;
-  translate: -50% -50%;
+  width: 100%;
+  height: auto;
+  display: block;
+  /* Rotamos 180° para alinear los sectores con los marcadores */
+  transform: rotate(180deg);
   object-fit: contain;
 }
 
