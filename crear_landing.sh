@@ -70,14 +70,25 @@ rm -rf assets/*
 mkdir -p assets
 cp -R "$ASSETS_PATH/"* assets/
 
-# 5. Invocar a Claude Code para inyectar inteligencia
-echo -e "\n🤖 Llamando a Claude Code para interpretar tus presupuestos y renders..."
-echo "Esto puede tardar unos minutos, Claude está escribiendo código..."
+# 5. Pipeline Multi-Agente IA
+echo -e "\n🤖 Ejecutando Pipeline Multi-Agente de Arquitectura..."
+echo "Los Agentes analizarán y procesarán los datos. Esto llevará unos minutos..."
 
-# Usamos claude con el flag -p (prompt) para ejecutar instrucciones non-interactive si es soportado, o automatizamos
-claude -p "Estás automatizando la generación de una landing page de arquitectura. Misión: 1. Lee atentamente todos los archivos nuevos en la carpeta 'assets/' (renders, videos, documentos de texto y presupuestos). 2. Extrae la información contextual e insertala en 'proyecto.json', ajustando los nombres de las imágenes y el video a como se llamen ahora en 'assets/'. 3. Lee CLAUDE.md para entender cómo se genera el sitio. 4. Reescribe 'index.html' utilizando ÚNICAMENTE la información nueva del contexto que escribiste en el json y los recursos de assets. Termina tu tarea y retorna completado."
+echo "   -> 🕵️ Ejecutando Agente Analista (Relevamiento de Datos)..."
+# Invocando al agente y pasándole el archivo de instrucciones (requiere soporte del CLI -p)
+# Usaremos un prompt que lee el contenido del markdown de instrucciones.
+claude -p "$(cat agentes/1-analista.md)" > /dev/null
 
-echo "✅ Landing page generada por IA con éxito."
+echo "   -> 🏗️ Ejecutando Agente Articulador (Mapeo de Presupuestos a JSON)..."
+claude -p "$(cat agentes/2-articulador.md)" > /dev/null
+
+echo "   -> ✨ Ejecutando Agente Diseñador Premium (Frontend & UI)..."
+claude -p "$(cat agentes/3-disenador.md)" > /dev/null
+
+echo "   -> 🛡️ Ejecutando Agente Tester (QA Data Matching)..."
+claude -p "$(cat agentes/4-tester.md)" > /dev/null
+
+echo "✅ Pipeline IA completado. Landing ensamblada con nivel Premium."
 
 # 6. Inicializar Git y subir a GitHub
 echo -e "\n🌐 Subiendo el proyecto a GitHub..."
