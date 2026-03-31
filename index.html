@@ -3,8 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Casa Rogeris — Complejo 4 Departamentos</title>
-<meta name="description" content="Complejo de 4 departamentos en Steel Frame. 168 m² + pasarela metálica. Tucumán, Argentina. SoyLeo AI — Arq. Leonardo Díaz.">
+<title>Casa Rogeris — Proyecto Interactivo</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -116,7 +115,6 @@ nav.scrolled {
     linear-gradient(to right, rgba(8,8,8,0.5) 0%, transparent 60%);
 }
 
-/* Grain texture overlay */
 .hero-grain {
   position: absolute;
   inset: 0;
@@ -148,8 +146,7 @@ nav.scrolled {
 }
 
 .hero-line {
-  width: 40px;
-  height: 1px;
+  width: 40px; height: 1px;
   background: var(--gold);
   opacity: 0.6;
 }
@@ -169,34 +166,6 @@ nav.scrolled {
   display: block;
 }
 
-.hero-meta {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  flex-wrap: wrap;
-  margin-bottom: 48px;
-}
-
-.hero-meta-item {
-  font-size: 10px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--light-dim);
-}
-
-.hero-meta-sep {
-  width: 3px; height: 3px;
-  border-radius: 50%;
-  background: var(--gold);
-  opacity: 0.5;
-}
-
-.hero-actions {
-  display: flex;
-  align-items: center;
-  gap: 32px;
-}
-
 .btn-primary {
   font-size: 10px;
   letter-spacing: 3px;
@@ -205,38 +174,11 @@ nav.scrolled {
   background: var(--gold);
   padding: 14px 28px;
   text-decoration: none;
-  transition: opacity 0.2s, transform 0.2s;
   display: inline-block;
-}
-.btn-primary:hover { opacity: 0.85; transform: translateY(-1px); }
-
-.hero-scroll-link {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-size: 9px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--gold);
-  text-decoration: none;
-  opacity: 0.7;
-  transition: opacity 0.2s;
-}
-.hero-scroll-link:hover { opacity: 1; }
-.hero-scroll-link::after {
-  content: '';
-  width: 50px; height: 1px;
-  background: var(--gold);
-  animation: grow-line 2.2s ease infinite;
-}
-@keyframes grow-line {
-  0%,100% { width: 36px; opacity: 0.4; }
-  50% { width: 64px; opacity: 1; }
 }
 
 /* ── SECCIONES BASE ── */
 section { padding: 100px 5vw; }
-
 .s-tag {
   font-size: 9px;
   letter-spacing: 4px;
@@ -245,7 +187,6 @@ section { padding: 100px 5vw; }
   margin-bottom: 14px;
   display: block;
 }
-
 .s-title {
   font-family: var(--serif);
   font-size: clamp(38px, 5.5vw, 68px);
@@ -256,110 +197,144 @@ section { padding: 100px 5vw; }
   letter-spacing: -1px;
 }
 
-.s-divider {
-  width: 48px; height: 1px;
-  background: var(--gold);
-  opacity: 0.4;
-  margin: 20px 0 48px;
-}
-
-/* ── SECCION: PROYECTO ── */
+/* ── SECCION: PROYECTO INTERACTIVO ── */
 #proyecto { background: var(--dark-2); }
 
-.proyecto-layout {
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 72px;
-  align-items: start;
-}
-
-.proyecto-descripcion {
-  font-family: var(--serif);
-  font-size: 21px;
-  font-weight: 300;
-  line-height: 1.68;
-  color: var(--light-dim);
-  margin-bottom: 40px;
-}
-
-.badge-ia {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  background: var(--gold-dim);
+.interactive-plan-container {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
   border: 1px solid var(--gold-mid);
-  padding: 7px 16px;
-  font-size: 9px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 36px;
+  padding: 10px;
+  background: var(--dark-3);
 }
-.badge-ia::before { content: '◆'; font-size: 7px; }
 
-.datos-grid {
-  display: grid;
+.interactive-plan {
+  position: relative;
+  width: 100%;
+  display: block;
+}
+
+.interactive-plan img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain; /* Para que la planta apaisada se vea por completo */
+}
+
+/* Animación de los marcadores */
+@keyframes pulse-ring {
+  0% { transform: scale(0.8); box-shadow: 0 0 0 0 rgba(201,168,76, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(201,168,76, 0); }
+  100% { transform: scale(0.8); box-shadow: 0 0 0 0 rgba(201,168,76, 0); }
+}
+
+.hotspot {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  background: var(--gold);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--dark);
+  font-weight: bold;
+  font-size: 14px;
+  animation: pulse-ring 2s infinite;
+  transition: background 0.3s;
+}
+
+.hotspot:hover, .hotspot.active {
+  background: var(--light);
+  animation: none;
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* Panel Desplegable del Sector */
+.sector-panel {
+  display: none;
   grid-template-columns: 1fr 1fr;
-  gap: 0;
+  gap: 40px;
+  background: var(--dark-3);
+  border: 1px solid var(--gold-dim);
+  padding: 40px;
+  margin-top: 20px;
+  animation: fadeIn 0.5s ease-out;
+}
+.sector-panel.active { display: grid; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.dato {
-  padding: 22px 24px 22px 0;
-  border-top: 1px solid rgba(201,168,76,0.14);
-}
-.dato:nth-child(odd) { padding-right: 32px; border-right: 1px solid rgba(201,168,76,0.07); }
-.dato:nth-child(even) { padding-left: 24px; }
-
-.dato-label {
-  font-size: 8px;
-  letter-spacing: 3.5px;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 8px;
+.sector-visual img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-bottom: 2px solid var(--gold);
 }
 
-.dato-valor {
+.sector-info h3 {
   font-family: var(--serif);
-  font-size: 19px;
-  font-weight: 300;
+  font-size: 32px;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+
+.sector-costo {
+  font-size: 24px;
   color: var(--light);
-  line-height: 1.2;
+  margin-bottom: 20px;
+  font-family: var(--serif);
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--gold-dim);
+}
+
+.sector-caracteristicas {
+  list-style: none;
+}
+.sector-caracteristicas li {
+  margin-bottom: 10px;
+  font-size: 14px;
+  display: flex;
+  gap: 10px;
+}
+.sector-caracteristicas li::before {
+  content: '◆';
+  color: var(--gold);
+  font-size: 10px;
+  margin-top: 2px;
 }
 
 /* ── SECCION: GALERIA ── */
 #galeria { background: var(--dark); padding-bottom: 0; }
-
 .galeria-track {
   display: flex;
   gap: 12px;
   overflow-x: auto;
   padding-bottom: 80px;
-  padding-right: 5vw;
   scrollbar-width: thin;
   scrollbar-color: var(--gold) var(--dark-3);
-  cursor: grab;
-  user-select: none;
 }
-.galeria-track::-webkit-scrollbar { height: 2px; }
-.galeria-track::-webkit-scrollbar-track { background: var(--dark-3); }
-.galeria-track::-webkit-scrollbar-thumb { background: var(--gold); }
-.galeria-track.dragging { cursor: grabbing; }
 
 .galeria-card {
-  flex: 0 0 480px;
-  height: 320px;
-  position: relative;
-  overflow: hidden;
+  flex: 0 0 500px;
+  height: 380px;
   background: var(--dark-3);
+  position: relative;
 }
 
 .galeria-card img {
   width: 100%; height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  object-fit: contain; /* Imagen apaisada se verá entera sin cortes */
+  background: var(--dark-4);
 }
-.galeria-card:hover img { transform: scale(1.05); }
 
 .galeria-card-label {
   position: absolute;
@@ -370,720 +345,347 @@ section { padding: 100px 5vw; }
   letter-spacing: 2.5px;
   text-transform: uppercase;
   color: var(--light);
-  pointer-events: none;
 }
 
-.galeria-card-num {
-  position: absolute;
-  top: 16px; left: 20px;
-  font-size: 9px;
-  letter-spacing: 2px;
-  color: var(--gold);
-  opacity: 0.7;
-}
-
-/* ── SECCION: PRESUPUESTO ── */
+/* ── SECCION: PRESUPUESTO TABS ── */
 #presupuesto { background: var(--dark-2); }
 
-.presupuesto-layout {
-  display: grid;
-  grid-template-columns: 1.4fr 0.6fr;
-  gap: 64px;
-  align-items: start;
+.tabs {
+  display: flex;
+  gap: 10px;
+  border-bottom: 1px solid var(--gold-mid);
+  margin-bottom: 30px;
 }
 
-/* Tabla de rubros */
-.rubros-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.rubros-thead th {
-  font-size: 8px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--gold);
-  padding: 0 0 16px;
-  text-align: left;
-  border-bottom: 1px solid rgba(201,168,76,0.25);
-  font-weight: 400;
-}
-.rubros-thead th:not(:first-child) { text-align: right; }
-
-.rubros-tbody tr {
-  border-bottom: 1px solid rgba(255,255,255,0.045);
-  transition: background 0.2s;
-}
-.rubros-tbody tr:hover { background: rgba(201,168,76,0.04); }
-
-.rubros-tbody td {
-  padding: 11px 0;
-  font-size: 11px;
-  letter-spacing: 0.3px;
-  color: var(--text);
-  vertical-align: middle;
-}
-.rubros-tbody td:not(:first-child) {
-  text-align: right;
-  font-family: var(--serif);
-  font-size: 14px;
-  font-weight: 300;
+.tab-btn {
+  background: transparent;
+  border: none;
   color: var(--light-dim);
-}
-.rubros-tbody td:last-child { color: var(--light); }
-
-.rubros-tbody td.n-rubro {
-  width: 28px;
-  color: rgba(201,168,76,0.4);
-  font-size: 9px;
-  letter-spacing: 1px;
-}
-
-.rubros-tfoot td {
-  padding: 16px 0 0;
-  border-top: 1px solid rgba(201,168,76,0.3);
-  font-size: 9px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--gold);
-}
-.rubros-tfoot td:not(:first-child) {
-  text-align: right;
-  font-family: var(--serif);
-  font-size: 20px;
-  letter-spacing: 0;
-  font-weight: 400;
-  color: var(--gold);
-  text-transform: none;
-}
-
-/* Cards resumen lateral */
-.resumen-lateral {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-  position: sticky;
-  top: 100px;
-}
-
-.resumen-card {
-  background: var(--dark-3);
-  padding: 28px 24px;
-  border-left: 2px solid transparent;
-  transition: border-color 0.3s;
-}
-.resumen-card:hover { border-color: var(--gold); }
-.resumen-card.highlight { background: var(--gold-dim); border-left-color: var(--gold); }
-
-.resumen-card-label {
-  font-size: 8px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 12px;
-}
-
-.resumen-card-valor {
-  font-family: var(--serif);
-  font-size: clamp(20px, 2.5vw, 28px);
-  font-weight: 300;
-  color: var(--light);
-  line-height: 1.1;
-}
-
-.resumen-card-sub {
-  font-size: 9px;
-  letter-spacing: 1.5px;
-  color: rgba(201,168,76,0.55);
-  margin-top: 6px;
-}
-
-.nota-presupuesto {
-  margin-top: 40px;
-  padding-top: 24px;
-  border-top: 1px solid rgba(255,255,255,0.06);
-  font-size: 9px;
-  letter-spacing: 1.5px;
-  line-height: 1.8;
-  color: rgba(202,198,190,0.4);
-  font-style: italic;
-  grid-column: 1 / -1;
-}
-
-/* ── SECCION: CONTACTO ── */
-#contacto {
-  background: var(--dark);
-  padding-bottom: 0;
-}
-
-.contacto-inner {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 64px;
-  align-items: center;
-  padding-bottom: 100px;
-  border-bottom: 1px solid rgba(201,168,76,0.1);
-}
-
-.contacto-info .s-title { margin-bottom: 32px; }
-
-.contacto-descripcion {
-  font-family: var(--serif);
-  font-size: 19px;
-  font-weight: 300;
-  line-height: 1.65;
-  color: var(--light-dim);
-  margin-bottom: 40px;
-}
-
-.contacto-datos {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-}
-
-.contacto-dato {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  padding-left: 16px;
-  border-left: 2px solid var(--gold-dim);
-}
-.contacto-dato .label {
-  font-size: 8px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--gold);
-  opacity: 0.7;
-}
-.contacto-dato .valor {
-  font-family: var(--serif);
-  font-size: 17px;
-  font-weight: 300;
-  color: var(--light);
-}
-.contacto-dato .valor a {
-  color: inherit;
-  text-decoration: none;
-  transition: color 0.2s;
-}
-.contacto-dato .valor a:hover { color: var(--gold); }
-
-/* Imagen de contacto */
-.contacto-visual {
-  position: relative;
-  aspect-ratio: 4/5;
-  overflow: hidden;
-}
-.contacto-visual img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  filter: brightness(0.75) saturate(0.85);
-}
-.contacto-visual-frame {
-  position: absolute;
-  inset: 16px;
-  border: 1px solid rgba(201,168,76,0.2);
-  pointer-events: none;
-}
-.contacto-visual-label {
-  position: absolute;
-  bottom: 28px; left: 28px;
-  font-size: 9px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--gold);
-  opacity: 0.8;
-}
-
-/* ── FOOTER ── */
-footer {
-  padding: 48px 5vw;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-
-.footer-brand {
-  font-family: var(--serif);
-  font-size: 20px;
-  font-weight: 300;
-  color: var(--light);
-}
-.footer-brand em { font-style: italic; color: var(--gold); }
-
-.footer-center {
-  font-size: 8px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: rgba(202,198,190,0.3);
-  text-align: center;
-}
-
-.footer-links {
-  display: flex;
-  gap: 20px;
-}
-.footer-links a {
-  font-size: 9px;
+  font-family: var(--mono);
+  font-size: 12px;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: rgba(201,168,76,0.5);
-  text-decoration: none;
-  transition: color 0.2s;
-}
-.footer-links a:hover { color: var(--gold); }
-
-/* ── BARRA DE PROGRESO RUBROS ── */
-.rubro-bar {
-  display: inline-block;
-  height: 2px;
-  background: var(--gold);
-  opacity: 0.45;
-  vertical-align: middle;
-  margin-left: 8px;
-  transition: width 0.8s ease;
+  padding: 15px 30px;
+  cursor: pointer;
+  transition: color 0.3s, background 0.3s;
 }
 
-/* ── ANIMACIONES ENTRADA ── */
-.fade-up {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
-}
-.fade-up.visible {
-  opacity: 1;
-  transform: translateY(0);
+.tab-btn:hover { color: var(--gold); }
+.tab-btn.active {
+  color: var(--gold);
+  border-bottom: 2px solid var(--gold);
+  background: var(--dark-3);
 }
 
-/* ── RESPONSIVE ── */
+.tab-content { display: none; }
+.tab-content.active { display: block; animation: fadeIn 0.4s; }
+
+.rubros-table { width: 100%; border-collapse: collapse; }
+.rubros-thead th {
+  font-size: 9px; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--gold);
+  padding: 15px 0; text-align: left;
+  border-bottom: 1px solid rgba(201,168,76,0.25);
+}
+.rubros-thead th.num { text-align: right; }
+
+.rubros-tbody tr { border-bottom: 1px solid rgba(255,255,255,0.05); }
+.rubros-tbody td {
+  padding: 15px 0; font-size: 12px;
+}
+.rubros-tbody td.num { text-align: right; font-family: var(--serif); font-size: 16px; color: var(--light); }
+
+.resumen-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+}
+.resumen-card {
+  background: var(--dark-3); padding: 25px;
+  border-left: 2px solid var(--gold);
+}
+.resumen-card-label { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+.resumen-card-valor { font-family: var(--serif); font-size: 26px; color: var(--light); }
+
+
+/* ── SECCION: FEEDBACK ── */
+#contacto {
+  background: var(--dark);
+}
+
+.feedback-container {
+  max-width: 600px;
+  background: var(--dark-3);
+  padding: 50px;
+  border: 1px solid var(--gold-dim);
+}
+
+.form-group { margin-bottom: 25px; }
+.form-group label {
+  display: block; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 10px;
+}
+.form-control {
+  width: 100%; background: var(--dark-4); border: 1px solid rgba(201,168,76,0.2);
+  color: var(--light); padding: 15px; font-family: var(--mono); font-size: 14px;
+}
+.form-control:focus { outline: none; border-color: var(--gold); }
+textarea.form-control { resize: vertical; min-height: 120px; }
+
+/* Responsive */
 @media (max-width: 900px) {
-  .proyecto-layout,
-  .presupuesto-layout,
-  .contacto-inner {
-    grid-template-columns: 1fr;
-    gap: 48px;
-  }
-  .galeria-card { flex: 0 0 320px; height: 220px; }
-  .nav-links { display: none; }
-  .nav-cta { display: none; }
-  .resumen-lateral { position: static; }
-  .hero-title { font-size: clamp(50px, 13vw, 80px); }
-  .datos-grid { grid-template-columns: 1fr 1fr; }
-  .rubros-tbody td:nth-child(2),
-  .rubros-thead th:nth-child(2) { display: none; }
-}
-
-@media (max-width: 540px) {
-  section { padding: 72px 5vw; }
-  .datos-grid { grid-template-columns: 1fr; }
-  .galeria-card { flex: 0 0 88vw; }
-  footer { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .sector-panel { grid-template-columns: 1fr; }
+  .resumen-cards { grid-template-columns: 1fr; }
 }
 </style>
 </head>
 <body>
 
-<!-- ── NAV ── -->
 <nav id="nav">
   <div class="nav-brand">Casa <em>Rogeris</em></div>
   <ul class="nav-links">
-    <li><a href="#proyecto">Proyecto</a></li>
-    <li><a href="#galeria">Galería</a></li>
-    <li><a href="#presupuesto">Presupuesto</a></li>
-    <li><a href="#contacto">Contacto</a></li>
+    <li><a href="#proyecto">Proyecto Iterativo</a></li>
+    <li><a href="#presupuesto">Costos</a></li>
+    <li><a href="#galeria">Visualización</a></li>
+    <li><a href="#contacto">Feedback</a></li>
   </ul>
-  <a href="#contacto" class="nav-cta">Consultar</a>
 </nav>
 
-<!-- ── HERO ── -->
 <section class="hero">
   <video class="hero-video" autoplay muted loop playsinline preload="auto">
     <source src="assets/video.mp4" type="video/mp4">
   </video>
   <div class="hero-overlay"></div>
-  <div class="hero-grain"></div>
   <div class="hero-content">
     <div class="hero-eyebrow">
       <div class="hero-line"></div>
       <span class="hero-tag">Presentación de Proyecto — 2025</span>
     </div>
     <h1 class="hero-title">Casa<em>Rogeris</em></h1>
-    <div class="hero-meta">
-      <span class="hero-meta-item">Complejo 4 Departamentos</span>
-      <span class="hero-meta-sep"></span>
-      <span class="hero-meta-item">Steel Frame</span>
-      <span class="hero-meta-sep"></span>
-      <span class="hero-meta-item">193 m² totales</span>
-      <span class="hero-meta-sep"></span>
-      <span class="hero-meta-item">Tucumán, NOA</span>
-    </div>
-    <div class="hero-actions">
-      <a href="#proyecto" class="btn-primary">Ver proyecto</a>
-      <a href="#presupuesto" class="hero-scroll-link">Presupuesto</a>
-    </div>
+    <a href="#proyecto" class="btn-primary">Explorar Proyecto</a>
   </div>
 </section>
 
-<!-- ── PROYECTO ── -->
+<!-- SECCIÓN PROYECTO INTERACTIVO -->
 <section id="proyecto">
-  <div class="fade-up">
-    <span class="s-tag">01 — El Proyecto</span>
-    <h2 class="s-title">Complejo<br>habitacional<br><em style="font-style:italic; color:var(--gold)">en altura</em></h2>
-  </div>
-  <div class="proyecto-layout fade-up">
-    <div>
-      <div class="badge-ia">Documentado con flujo IA — SoyLeo AI</div>
-      <p class="proyecto-descripcion">
-        Cuatro unidades habitacionales de 42 m² cada una, construidas en sistema Steel Frame sobre fundaciones de hormigón armado. El conjunto se vincula mediante una pasarela metálica y escalera de acceso compartida, optimizando circulación y aprovechamiento del terreno en altura.<br><br>
-        Terminación exterior con cerramiento OSB, membrana hidrófuga y revoque fino. Interiores resueltos con tabiquería Durlock, pisos cerámicos y carpinterías de alto rendimiento.
-      </p>
+  <span class="s-tag">01 — Detalles por Sector</span>
+  <h2 class="s-title">Planimetría<br><em style="font-style:italic; color:var(--gold)">Interactiva</em></h2>
+  
+  <div class="interactive-plan-container">
+    <div class="interactive-plan">
+      <img src="assets/planta3d.png" alt="Planta del Proyecto Apaisada">
+      
+      <!-- Hotspots posicionados (valores de ejemplo, el agente articulador debería generar esto dinámico) -->
+      <div class="hotspot" style="top: 35%; left: 30%;" data-target="sector-cocina">+</div>
+      <div class="hotspot" style="top: 60%; left: 65%;" data-target="sector-habitacion">+</div>
+      <div class="hotspot" style="top: 20%; left: 75%;" data-target="sector-bano">+</div>
     </div>
-    <div class="datos-grid">
-      <div class="dato">
-        <div class="dato-label">Tipología</div>
-        <div class="dato-valor">4 Dptos. × 42 m²</div>
-      </div>
-      <div class="dato">
-        <div class="dato-label">Sistema</div>
-        <div class="dato-valor">Steel Frame</div>
-      </div>
-      <div class="dato">
-        <div class="dato-label">Sup. deptos</div>
-        <div class="dato-valor">168 m²</div>
-      </div>
-      <div class="dato">
-        <div class="dato-label">Pasarela + escalera</div>
-        <div class="dato-valor">25 m²</div>
-      </div>
-      <div class="dato">
-        <div class="dato-label">Sup. total</div>
-        <div class="dato-valor">193 m²</div>
-      </div>
-      <div class="dato">
-        <div class="dato-label">Ubicación</div>
-        <div class="dato-valor">Tucumán, NOA</div>
-      </div>
-      <div class="dato">
-        <div class="dato-label">Estado</div>
-        <div class="dato-valor">Proyecto ejecutivo</div>
-      </div>
-      <div class="dato">
-        <div class="dato-label">Año</div>
-        <div class="dato-valor">2025</div>
-      </div>
+  </div>
+
+  <!-- Paneles de Datos (Ocultos por defecto) -->
+  <div id="sector-cocina" class="sector-panel">
+    <div class="sector-visual">
+      <img src="assets/cocina-comedor.png" alt="Cocina">
+    </div>
+    <div class="sector-info">
+      <h3>Cocina y Comedor</h3>
+      <div class="sector-costo">Costo Estimado: $ 8.500.000</div>
+      <ul class="sector-caracteristicas">
+        <li>Mobiliario en melamina texturizada.</li>
+        <li>Mesada de granito Negro Absoluto.</li>
+        <li>Piso de porcelanato simil madera.</li>
+        <li>Instalación de gas y eléctrica terminada para electrodomésticos.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="sector-habitacion" class="sector-panel">
+    <div class="sector-visual">
+      <img src="assets/habitacion.png" alt="Habitación Principal">
+    </div>
+    <div class="sector-info">
+      <h3>Dormitorio Principal</h3>
+      <div class="sector-costo">Costo Estimado: $ 5.200.000</div>
+      <ul class="sector-caracteristicas">
+        <li>Placard empotrado de pared a pared.</li>
+        <li>Piso flotante de alto tránsito.</li>
+        <li>Aberturas DVH (Doble Vidrio Hermético).</li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="sector-bano" class="sector-panel">
+    <div class="sector-visual">
+      <img src="assets/baño.png" alt="Baño">
+    </div>
+    <div class="sector-info">
+      <h3>Baño Completo</h3>
+      <div class="sector-costo">Costo Estimado: $ 3.800.000</div>
+      <ul class="sector-caracteristicas">
+        <li>Revestimientos de pared tipo Subway.</li>
+        <li>Sanitarios Ferrum y grifería FV.</li>
+        <li>Mampara de vidrio templado.</li>
+        <li>Instalación hidráulica por termofusión.</li>
+      </ul>
     </div>
   </div>
 </section>
 
-<!-- ── GALERIA ── -->
-<section id="galeria" style="padding-right: 0;">
-  <div class="fade-up" style="padding-right: 5vw;">
-    <span class="s-tag">02 — Visualización</span>
-    <h2 class="s-title">Galería<br>de espacios</h2>
-  </div>
+<!-- GALERIA APAISADA -->
+<section id="galeria">
+  <span class="s-tag">02 — Visualización General</span>
+  <h2 class="s-title">Recorrido<br>Visual</h2>
   <div class="galeria-track" id="galeriaTrack">
     <div class="galeria-card">
-      <img src="assets/planta3d.png" alt="Planta 3D del complejo">
-      <span class="galeria-card-num">01</span>
-      <div class="galeria-card-label">Vista general — Planta 3D</div>
+      <img src="assets/planta3d.png" alt="Planta General" style="object-fit: contain;">
+      <div class="galeria-card-label">Planta Total (Vista Apaisada)</div>
     </div>
     <div class="galeria-card">
-      <img src="assets/cocina-comedor.png" alt="Cocina comedor">
-      <span class="galeria-card-num">02</span>
-      <div class="galeria-card-label">Cocina / Comedor</div>
+      <img src="assets/cocina-comedor.png" alt="Cocina">
+      <div class="galeria-card-label">Sector Social</div>
     </div>
     <div class="galeria-card">
-      <img src="assets/habitacion.png" alt="Habitación principal">
-      <span class="galeria-card-num">03</span>
-      <div class="galeria-card-label">Habitación principal</div>
-    </div>
-    <div class="galeria-card">
-      <img src="assets/baño.png" alt="Baño">
-      <span class="galeria-card-num">04</span>
-      <div class="galeria-card-label">Baño completo</div>
+      <img src="assets/habitacion.png" alt="Habitacion">
+      <div class="galeria-card-label">Dormitorios</div>
     </div>
   </div>
 </section>
 
-<!-- ── PRESUPUESTO ── -->
+<!-- PRESUPUESTO CON PESTAÑAS -->
 <section id="presupuesto">
-  <div class="fade-up">
-    <span class="s-tag">03 — Inversión estimada</span>
-    <h2 class="s-title">Presupuesto<br>global de obra</h2>
+  <span class="s-tag">03 — Análisis Económico</span>
+  <h2 class="s-title">Desglose de<br><em style="font-style:italic; color:var(--gold)">Costos</em></h2>
+  
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="tab-rubros">Rubros Constructivos</button>
+    <button class="tab-btn" data-tab="tab-resumen">Resumen Financiero</button>
   </div>
-  <div class="presupuesto-layout fade-up">
-    <!-- Tabla rubros -->
-    <div>
-      <table class="rubros-table">
-        <thead class="rubros-thead">
-          <tr>
-            <th style="width:28px">N°</th>
-            <th>Rubro</th>
-            <th>Materiales</th>
-            <th>Mano de obra</th>
-            <th>Total</th>
-          </tr>
-        </thead>
-        <tbody class="rubros-tbody">
-          <tr>
-            <td class="n-rubro">01</td>
-            <td>Trabajos preparatorios</td>
-            <td>$ 1.050.400</td>
-            <td>$ 1.575.600</td>
-            <td>$ 2.626.000 <span class="rubro-bar" style="width:12px"></span></td>
-          </tr>
-          <tr>
-            <td class="n-rubro">02</td>
-            <td>Fundaciones</td>
-            <td>$ 6.846.400</td>
-            <td>$ 3.687.600</td>
-            <td>$ 10.534.000 <span class="rubro-bar" style="width:32px"></span></td>
-          </tr>
-          <tr>
-            <td class="n-rubro">03</td>
-            <td>Estructura Steel Frame</td>
-            <td>$ 17.380.800</td>
-            <td>$ 11.587.200</td>
-            <td>$ 28.968.000 <span class="rubro-bar" style="width:88px"></span></td>
-          </tr>
-          <tr>
-            <td class="n-rubro">04</td>
-            <td>Cerramiento exterior</td>
-            <td>$ 7.398.400</td>
-            <td>$ 3.171.600</td>
-            <td>$ 10.570.000 <span class="rubro-bar" style="width:32px"></span></td>
-          </tr>
-          <tr>
-            <td class="n-rubro">05</td>
-            <td>Terminación exterior</td>
-            <td>$ 3.281.250</td>
-            <td>$ 3.281.250</td>
-            <td>$ 6.562.500 <span class="rubro-bar" style="width:20px"></span></td>
-          </tr>
-          <tr>
-            <td class="n-rubro">06</td>
-            <td>Tabiquería interior</td>
-            <td>$ 4.737.600</td>
-            <td>$ 3.158.400</td>
-            <td>$ 7.896.000 <span class="rubro-bar" style="width:24px"></span></td>
-          </tr>
-          <tr>
-            <td class="n-rubro">07</td>
-            <td>Pisos y revestimientos</td>
-            <td>$ 5.997.150</td>
-            <td>$ 3.229.350</td>
-            <td>$ 9.226.500 <span class="rubro-bar" style="width:28px"></span></td>
-          </tr>
-          <tr>
-            <td class="n-rubro">08</td>
-            <td>Instalación eléctrica</td>
-            <td>$ 4.356.300</td>
-            <td>$ 3.564.700</td>
-            <td>$ 7.921.000 <span class="rubro-bar" style="width:24px"></span></td>
-          </tr>
-          <tr>
-            <td class="n-rubro">09</td>
-            <td>Instalación sanitaria</td>
-            <td>$ 5.082.350</td>
-            <td>$ 4.158.650</td>
-            <td>$ 9.241.000 <span class="rubro-bar" style="width:28px"></span></td>
-          </tr>
-          <tr>
-            <td class="n-rubro">10</td>
-            <td>Cubierta / Losa SF</td>
-            <td>$ 6.862.400</td>
-            <td>$ 3.697.600</td>
-            <td>$ 10.560.000 <span class="rubro-bar" style="width:32px"></span></td>
-          </tr>
-          <tr>
-            <td class="n-rubro">11</td>
-            <td>Carpintería puertas y ventanas</td>
-            <td>$ 8.976.000</td>
-            <td>$ 1.584.000</td>
-            <td>$ 10.560.000 <span class="rubro-bar" style="width:32px"></span></td>
-          </tr>
-          <tr>
-            <td class="n-rubro">12</td>
-            <td>Pasarela metálica + escalera</td>
-            <td>$ 4.620.000</td>
-            <td>$ 1.980.000</td>
-            <td>$ 6.600.000 <span class="rubro-bar" style="width:20px"></span></td>
-          </tr>
-          <tr>
-            <td class="n-rubro">13</td>
-            <td>Pintura interior</td>
-            <td>$ 1.584.000</td>
-            <td>$ 2.376.000</td>
-            <td>$ 3.960.000 <span class="rubro-bar" style="width:12px"></span></td>
-          </tr>
-          <tr>
-            <td class="n-rubro">14</td>
-            <td>Varios e imprevistos</td>
-            <td>$ 3.281.250</td>
-            <td>$ 3.281.250</td>
-            <td>$ 6.562.500 <span class="rubro-bar" style="width:20px"></span></td>
-          </tr>
-        </tbody>
-        <tfoot class="rubros-tfoot">
-          <tr>
-            <td></td>
-            <td>Total general</td>
-            <td>$ 81.453.300</td>
-            <td>$ 50.133.200</td>
-            <td>$ 131.240.000</td>
-          </tr>
-        </tfoot>
-      </table>
-      <p class="nota-presupuesto">
-        Presupuesto global orientativo. No incluye honorarios profesionales ni IVA.<br>
-        Costo base Steel Frame terminación económica NOA: $680.000/m² (ARS — referencia mercado 2025).<br>
-        Base de datos NOA — Arq. & Const., Tucumán. Valores sujetos a actualización al momento de ejecución.
-      </p>
-    </div>
 
-    <!-- Resumen lateral -->
-    <div class="resumen-lateral">
-      <div class="resumen-card highlight">
-        <div class="resumen-card-label">Costo total de obra</div>
+  <div id="tab-rubros" class="tab-content active">
+    <!-- Aquí el Agente Frontend inyectará la tabla dinámicamente. Usamos datos de ejemplo del JSON -->
+    <table class="rubros-table">
+      <thead class="rubros-thead">
+        <tr>
+          <th>Rubro</th>
+          <th class="num">Materiales</th>
+          <th class="num">Mano de Obra</th>
+          <th class="num">Costo Total</th>
+        </tr>
+      </thead>
+      <tbody class="rubros-tbody">
+        <tr>
+          <td>Estructura Steel Frame</td>
+          <td class="num">$ 17.380.800</td>
+          <td class="num">$ 11.587.200</td>
+          <td class="num">$ 28.968.000</td>
+        </tr>
+        <tr>
+          <td>Fundaciones</td>
+          <td class="num">$ 6.846.400</td>
+          <td class="num">$ 3.687.600</td>
+          <td class="num">$ 10.534.000</td>
+        </tr>
+        <tr>
+          <td>Cerramiento Exterior</td>
+          <td class="num">$ 7.398.400</td>
+          <td class="num">$ 3.171.600</td>
+          <td class="num">$ 10.570.000</td>
+        </tr>
+        <!-- El agente generará el resto -->
+      </tbody>
+    </table>
+  </div>
+
+  <div id="tab-resumen" class="tab-content">
+    <div class="resumen-cards">
+      <div class="resumen-card">
+        <div class="resumen-card-label">Total Inversión</div>
         <div class="resumen-card-valor">$ 131.240.000</div>
-        <div class="resumen-card-sub">Sin honorarios ni IVA</div>
       </div>
       <div class="resumen-card">
-        <div class="resumen-card-label">Total materiales</div>
-        <div class="resumen-card-valor">$ 81.453.300</div>
-        <div class="resumen-card-sub">62% del costo total</div>
-      </div>
-      <div class="resumen-card">
-        <div class="resumen-card-label">Total mano de obra</div>
-        <div class="resumen-card-valor">$ 50.133.200</div>
-        <div class="resumen-card-sub">38% del costo total</div>
-      </div>
-      <div class="resumen-card">
-        <div class="resumen-card-label">Costo por m²</div>
+        <div class="resumen-card-label">Costo por M²</div>
         <div class="resumen-card-valor">$ 680.000</div>
-        <div class="resumen-card-sub">Steel Frame — term. económica</div>
       </div>
       <div class="resumen-card">
-        <div class="resumen-card-label">Costo por depto (42 m²)</div>
+        <div class="resumen-card-label">Costo por Unidad</div>
         <div class="resumen-card-valor">$ 32.810.000</div>
-        <div class="resumen-card-sub">Promedio por unidad</div>
-      </div>
-      <div class="resumen-card">
-        <div class="resumen-card-label">Rubro principal</div>
-        <div class="resumen-card-valor">Estructura SF</div>
-        <div class="resumen-card-sub">$ 28.968.000 — 22% del total</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── CONTACTO ── -->
+<!-- FEEDBACK Y COMENTARIOS -->
 <section id="contacto">
-  <div class="contacto-inner fade-up">
-    <div class="contacto-info">
-      <span class="s-tag">04 — Estudio</span>
-      <h2 class="s-title">SoyLeo AI<br><em style="font-style:italic; color:var(--gold)">Arq. Leonardo Díaz</em></h2>
-      <p class="contacto-descripcion">
-        Arquitectura y documentación de obra potenciada por inteligencia artificial. Presupuestos ejecutivos, gestión de proyecto y flujos de trabajo automatizados para estudios en el NOA y toda la Argentina.
-      </p>
-      <div class="contacto-datos">
-        <div class="contacto-dato">
-          <span class="label">Arquitecto</span>
-          <span class="valor">Leonardo Díaz</span>
-        </div>
-        <div class="contacto-dato">
-          <span class="label">Plataforma</span>
-          <span class="valor"><a href="https://soyleoai.com" target="_blank">soyleoai.com</a></span>
-        </div>
-        <div class="contacto-dato">
-          <span class="label">Instagram</span>
-          <span class="valor"><a href="https://instagram.com/soy.leo_ai" target="_blank">@soy.leo_ai</a></span>
-        </div>
-        <div class="contacto-dato">
-          <span class="label">Email</span>
-          <span class="valor"><a href="mailto:soyleo.ai.arq@gmail.com">soyleo.ai.arq@gmail.com</a></span>
-        </div>
-        <div class="contacto-dato">
-          <span class="label">Zona de trabajo</span>
-          <span class="valor">Tucumán · NOA · Patagonia</span>
-        </div>
-      </div>
+  <span class="s-tag">04 — Interacción</span>
+  <h2 class="s-title">Comentarios y<br><em style="font-style:italic; color:var(--gold)">Feedback</em></h2>
+  
+  <div class="feedback-container">
+    <p style="font-family: var(--serif); font-size: 18px; color: var(--light-dim); margin-bottom: 30px;">
+      ¿Alguna observación sobre la distribución, terminaciones o el presupuesto de la unidad? Déjanos tus comentarios.
+    </p>
+    <div class="form-group">
+      <label>Nombre y Apellido</label>
+      <input type="text" class="form-control" placeholder="Tus datos...">
     </div>
-    <div class="contacto-visual">
-      <img src="assets/planta3d.png" alt="Vista del complejo">
-      <div class="contacto-visual-frame"></div>
-      <div class="contacto-visual-label">Complejo Rogeris — 2025</div>
+    <div class="form-group">
+      <label>Tus Comentarios</label>
+      <textarea class="form-control" placeholder="Escribe aquí cualquier modificación que desees solicitar..."></textarea>
     </div>
+    <button class="btn-primary">Enviar Feedback</button>
   </div>
 </section>
-
-<!-- ── FOOTER ── */
-<footer>
-  <div class="footer-brand">Casa <em>Rogeris</em></div>
-  <div class="footer-center">SoyLeo AI · Tucumán, Argentina · 2025</div>
-  <div class="footer-links">
-    <a href="https://soyleoai.com" target="_blank">soyleoai.com</a>
-    <a href="https://instagram.com/soy.leo_ai" target="_blank">@soy.leo_ai</a>
-  </div>
-</footer>
 
 <script>
-// ── NAV scroll ──
-const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 60);
-});
+// Manejo de Hotspots en la Planimetría
+const hotspots = document.querySelectorAll('.hotspot');
+const panels = document.querySelectorAll('.sector-panel');
 
-// ── Fade-up on scroll ──
-const fadeEls = document.querySelectorAll('.fade-up');
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('visible');
-      observer.unobserve(e.target);
+hotspots.forEach(hotspot => {
+  hotspot.addEventListener('click', () => {
+    // Resetear hotspots
+    hotspots.forEach(h => h.classList.remove('active'));
+    // Ocultar paneles
+    panels.forEach(p => p.classList.remove('active'));
+    
+    // Activar clickeado
+    hotspot.classList.add('active');
+    const target = document.getElementById(hotspot.dataset.target);
+    if (target) {
+      target.classList.add('active');
+      // Scroll al panel
+      target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
   });
-}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-fadeEls.forEach(el => observer.observe(el));
+});
 
-// ── Galería drag scroll ──
+// Manejo de Pestañas en Presupuesto
+const tabBtns = document.querySelectorAll('.tab-btn');
+const tabContents = document.querySelectorAll('.tab-content');
+
+tabBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    tabBtns.forEach(b => b.classList.remove('active'));
+    tabContents.forEach(c => c.classList.remove('active'));
+    
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+  });
+});
+
+// ── Galería drag scroll (sin cambios) ──
 const track = document.getElementById('galeriaTrack');
 let isDragging = false, startX, scrollLeft;
-
-track.addEventListener('mousedown', e => {
-  isDragging = true;
-  track.classList.add('dragging');
-  startX = e.pageX - track.offsetLeft;
-  scrollLeft = track.scrollLeft;
-});
-document.addEventListener('mouseup', () => {
-  isDragging = false;
-  track.classList.remove('dragging');
-});
-track.addEventListener('mousemove', e => {
-  if (!isDragging) return;
-  e.preventDefault();
-  const x = e.pageX - track.offsetLeft;
-  track.scrollLeft = scrollLeft - (x - startX) * 1.4;
-});
-
-// Touch support
-track.addEventListener('touchstart', e => {
-  startX = e.touches[0].pageX - track.offsetLeft;
-  scrollLeft = track.scrollLeft;
-}, { passive: true });
-track.addEventListener('touchmove', e => {
-  const x = e.touches[0].pageX - track.offsetLeft;
-  track.scrollLeft = scrollLeft - (x - startX);
-}, { passive: true });
-
-// ── Stagger fade delays ──
-document.querySelectorAll('.fade-up').forEach((el, i) => {
-  el.style.transitionDelay = `${i * 0.08}s`;
-});
+if (track) {
+  track.addEventListener('mousedown', e => {
+    isDragging = true; track.classList.add('dragging');
+    startX = e.pageX - track.offsetLeft; scrollLeft = track.scrollLeft;
+  });
+  document.addEventListener('mouseup', () => { isDragging = false; track.classList.remove('dragging'); });
+  track.addEventListener('mousemove', e => {
+    if (!isDragging) return; e.preventDefault();
+    const x = e.pageX - track.offsetLeft; track.scrollLeft = scrollLeft - (x - startX) * 1.4;
+  });
+}
 </script>
 </body>
 </html>
